@@ -1,12 +1,42 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #f4f4f4;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #343a40;
+    color: white;
+}
+
+header #user-info {
+    display: flex;
+    align-items: center;
+}
+
+header #user-email {
+    margin-right: 20px;
+}
+
+header #logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+header #logout-button:hover {
+    background-color: #c82333;
+}
+
+main {
+    padding: 20px;
 }
 
 #shift-table {
@@ -16,8 +46,8 @@ header {
 }
 
 #shift-table th, #shift-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: 1px solid #dee2e6;
+    padding: 15px;
     text-align: center;
 }
 
@@ -49,4 +79,11 @@ header {
 .signup-container form .btn, .d-lg-flex form .btn {
     background-color: #007bff;
     color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.signup-container form .btn:hover, .d-lg-flex form .btn:hover {
+    background-color: #0056b3;
 }

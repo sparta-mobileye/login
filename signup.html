@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sparta - Sign Up</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="fonts/icomoon/style.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -26,47 +25,7 @@
     </form>
 </div>
 
-<script type="module">
-    // Import Firebase modules
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyBvhdmhh12h2qbl99385j3iRKR9EEw01HU",
-        authDomain: "sparta-m.firebaseapp.com",
-        projectId: "sparta-m",
-        storageBucket: "sparta-m.appspot.com",
-        messagingSenderId: "137777159078",
-        appId: "1:137777159078:web:0d7639edd4feb7441d0d67",
-        measurementId: "G-5519CNXMV7"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-
-    // Handle the sign-up form submission
-    document.getElementById('signupForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // User signed up successfully
-                const user = userCredential.user;
-                alert('Account created successfully! You can now log in.');
-                window.location.href = "login.html"; // Redirect to login page
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert('Error: ' + errorMessage);
-            });
-    });
-</script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

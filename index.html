@@ -36,6 +36,44 @@
             </div>
         </div>
     </div>
-    <script src="js/main.js"></script>
+
+    <script type="module">
+        // Firebase configuration and initialization
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBvhdmhh12h2qbl99385j3iRKR9EEw01HU",
+            authDomain: "sparta-m.firebaseapp.com",
+            projectId: "sparta-m",
+            storageBucket: "sparta-m.appspot.com",
+            messagingSenderId: "137777159078",
+            appId: "1:137777159078:web:0d7639edd4feb7441d0d67",
+            measurementId: "G-5519CNXMV7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    alert('Login successful');
+                    window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert('Error: ' + errorMessage);
+                });
+        });
+    </script>
 </body>
 </html>

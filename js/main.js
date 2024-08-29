@@ -1,35 +1,39 @@
-// Example email from the logged-in user
-const userEmail = "employee@example.com";
-document.getElementById('user-email').innerText = userEmail;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBvhdmhh12h2qbl99385j3iRKR9EEw01HU",
+    authDomain: "sparta-m.firebaseapp.com",
+    projectId: "sparta-m",
+    storageBucket: "sparta-m.appspot.com",
+    messagingSenderId: "137777159078",
+    appId: "1:137777159078:web:0d7639edd4feb7441d0d67",
+    measurementId: "G-5519CNXMV7"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Handle logout
+document.getElementById('logout-button').addEventListener('click', function() {
+    signOut(auth).then(() => {
+        window.location.href = "index.html"; // Redirect to login page
+    }).catch((error) => {
+        console.error('Sign out error:', error);
+    });
+});
+
+// Example function for handling shift selection
 document.querySelectorAll('.shift-cell').forEach(cell => {
     cell.addEventListener('click', function() {
         if (!this.classList.contains('selected')) {
             this.classList.add('selected');
-            // Store selection in the backend or session storage
-            // Example: Store selection to Firebase (for simplicity, let's just log it)
-            console.log(`User ${userEmail} selected ${this.dataset.day} ${this.dataset.shift}`);
+            console.log(`Shift selected for ${this.dataset.day} ${this.dataset.shift}`);
         } else {
             this.classList.remove('selected');
-            // Remove selection in the backend or session storage
-            console.log(`User ${userEmail} deselected ${this.dataset.day} ${this.dataset.shift}`);
+            console.log(`Shift deselected for ${this.dataset.day} ${this.dataset.shift}`);
         }
     });
-});
-
-// Logout function
-document.getElementById('logout-button').addEventListener('click', function() {
-    // Implement logout logic here (e.g., Firebase signOut)
-    window.location.href = "index.html"; // Redirect to login page
-});
-
-// Sign-Up Functionality
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    console.log(`Signing up with Email: ${email}, Password: ${password}`);
-    // Implement sign-up logic (e.g., Firebase Authentication)
-    window.location.href = "index.html"; // Redirect to login page after successful sign-up
 });

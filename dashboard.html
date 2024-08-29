@@ -1,30 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sparta - Dashboard</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparta Employee Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Your Dashboard</h1>
-    <p>Here is where you can access your shift schedule and manage your account.</p>
-    <button id="logoutButton" class="btn btn-danger">Log Out</button>
-  </div>
+    <header>
+        <h1>Sparta Employee Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shifts">Shift Overview</a></li>
+                <li><a href="#availability">Submit Availability</a></li>
+                <li><a href="#admin">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <script type="module">
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    <!-- Shift Overview Section -->
+    <section id="shifts">
+        <h2>Shift Overview: Sunday - Saturday</h2>
+        <div class="shifts-container">
+            <!-- Loop over days and places -->
+            <div class="day">
+                <h3>Sunday</h3>
+                <div class="place">
+                    <h4>Place1</h4>
+                    <!-- Shift details -->
+                </div>
+                <div class="place">
+                    <h4>Place2</h4>
+                    <!-- Shift details -->
+                </div>
+                <div class="place">
+                    <h4>Place3</h4>
+                    <!-- Shift details -->
+                </div>
+            </div>
+            <!-- Repeat for each day -->
+        </div>
+    </section>
 
-    const auth = getAuth();
-    document.getElementById('logoutButton').addEventListener('click', function() {
-      signOut(auth).then(() => {
-        // Sign-out successful.
-        window.location.href = "index.html"; // Redirect to login page
-      }).catch((error) => {
-        console.error('Sign out error:', error);
-      });
-    });
-  </script>
+    <!-- Availability Submission Section -->
+    <section id="availability">
+        <h2>Submit Your Availability</h2>
+        <form id="availability-form">
+            <label for="employee-name">Employee Name:</label>
+            <input type="text" id="employee-name" name="employee-name" required>
+            
+            <label for="shift-day">Select Day:</label>
+            <select id="shift-day" name="shift-day">
+                <option value="sunday">Sunday</option>
+                <option value="monday">Monday</option>
+                <!-- Repeat for all days -->
+            </select>
+
+            <label for="shift-location">Select Location:</label>
+            <select id="shift-location" name="shift-location">
+                <option value="place1">Place1</option>
+                <option value="place2">Place2</option>
+                <option value="place3">Place3</option>
+            </select>
+
+            <label for="shift-time">Select Shift:</label>
+            <select id="shift-time" name="shift-time">
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="night">Night</option>
+            </select>
+
+            <button type="submit">Submit Availability</button>
+        </form>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin">
+        <h2>Admin Panel</h2>
+        <div id="availability-summary">
+            <!-- Display summary of availability -->
+        </div>
+        <button id="assign-shifts">Assign Shifts</button>
+    </section>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
